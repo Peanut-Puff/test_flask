@@ -1,0 +1,17 @@
+{# 写一个块（block） #}
+<html>
+<head>
+	{% block head %}
+	<title>
+		{% block title %}
+		默认标题
+		{% endblock %}
+	</title>
+	{% endblock %}
+</head>
+<body>
+	{% block body %}
+	默认内容
+	{% endblock %}
+</body>
+</html>
