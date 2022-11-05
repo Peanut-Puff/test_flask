@@ -16,7 +16,7 @@ app = Flask(__name__)
 new_path="../static/1.jpg"
 @app.route('/')
 def index(image=new_path):  # put application's code here
-    conn = pymysql.Connect(host='localhost', port=3306, user='root', passwd='@Hezhi11', db='exp2', charset='utf8')
+    conn = pymysql.Connect(host='localhost', port=3306, user='root', passwd='***', db='db', charset='utf8')
     cur = conn.cursor()
     sql = "select no,name from courses1;"  # sql语句
     cur.execute(sql)
