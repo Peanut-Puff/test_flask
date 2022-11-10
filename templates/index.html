@@ -9,6 +9,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-fileinput/4.4.6/css/fileinput.min.css"/>
 <script src="https://cdn.bootcss.com/bootstrap-fileinput/4.4.6/js/fileinput.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/mycss.css">
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */
     .navbar {
@@ -59,21 +60,28 @@
 <div class="container-fluid bg-3 text-center">
   <h3>Some of my Work</h3><br>
   <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-6">
       <p>示例图片</p>
-      <img id="img" src="{{img}}" class="img-responsive" style="width:100%" alt="Image">
-        <form role="form" action="http://localhost:5000/getimg" method="POST" enctype="multipart/form-data">
-            <input type="file" name="file" style="margin-left:30%;margin-top: 10px;margin-bottom: 10px"/>
-			<input type="submit" id="submit" class="btn-upload"/>
+      <img id="img" src="{{img}}" class="img-responsive" style="width:100%" alt="Image">{# 做点css，美化一下 #}
+        <form role="form" action="http://localhost:5000/" method="POST" enctype="multipart/form-data">
+            <label class="label">
+            <input type="file" name="file" required/>
+                <span>Select a file</span>
+
+            </label>
+            <label class="label">
+      			<input type="submit" id="submit" />
+                <span>Submit</span>
+            </label>
         </form>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-6">
       <p>示例表格</p>
-      <table id="bbsTab">
+      <table >
         <tr >
-        <th style="text-align: center">1</th>
-        <th style="text-align: center">2</th>
-        </tr>
+        <th >1</th>
+        <th >2</th>
+        </tr >
         {% for i in u %}
         <tr>
         <td>{{ i[0] }}</td>
@@ -82,14 +90,7 @@
         {% endfor %}
     </table>
     </div>
-    <div class="col-sm-3">
-      <p>Some text..</p>
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-    <div class="col-sm-3">
-      <p>Some text..</p>
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-    </div>
+
   </div>
 </div><br>
 

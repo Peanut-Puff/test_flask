@@ -4,6 +4,8 @@ import pymysql
 from flask import Flask, url_for, render_template, abort, make_response, request
 from werkzeug.utils import secure_filename
 
+from utils import db_util
+
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'bmp'}
 
 
@@ -13,17 +15,16 @@ def allowed_file(filename):
 
 app = Flask(__name__)
 
-new_path="../static/1.jpg"
+new_path = "../static/1.jpg"
+
+
 @app.route('/')
 def index(image=new_path):  # put application's code here
-    conn = pymysql.Connect(host='localhost', port=3306, user='root', passwd='***', db='db', charset='utf8')
-    cur = conn.cursor()
-    sql = "select no,name from courses1;"  # sql语句
-    cur.execute(sql)
-    data = cur.fetchall()
-    cur.close()
-    conn.close()
-    return render_template('index.html', time=time.ctime(), img=image, u=data)
+    mydb = db_util('localhost', 3306, 'root', '@Hezhi11', 'exp2', )
+    mydb.connect()
+    mydb.select_all('select * from courses1')
+    mydb.close()
+    return render_template('index.html', time=time.ctime(), img=image, u=mydb.data)
 
 
 @app.route('/gettime')
@@ -31,7 +32,7 @@ def gettime():
     return time.ctime()
 
 
-@app.route('/getimg', methods=['POST', 'GET'])
+@app.route('/', methods=['POST', 'GET'])
 def upload():
     upload_file = request.files['file']
     if upload_file and allowed_file(upload_file.filename):
