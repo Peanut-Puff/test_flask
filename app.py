@@ -20,7 +20,7 @@ new_path = "../static/1.jpg"
 
 @app.route('/')
 def index(image=new_path):  # put application's code here
-    mydb = db_util('localhost', 3306, 'root', '@Hezhi11', 'exp2', )
+    mydb = db_util('localhost', 3306, 'root', '***', '***', )
     mydb.connect()
     mydb.select_all('select * from courses1')
     mydb.close()
