@@ -1,0 +1,57 @@
+table,
+th,
+td {
+    border: 2px solid rgb(44, 44, 44);
+    padding: 10px;
+    margin: auto;
+    background-color: rgb(245, 245, 245);
+    text-align: center;
+}
+.img-gray{
+    border: 5px dashed rgb(218, 226, 226);
+    padding: 5px;
+    margin: 10px;
+}
+label.label input[type="file"],
+input[type="submit"] {
+    position: absolute;
+    top: -1000px;
+}
+
+.label {
+    cursor: pointer;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin: 5px;
+    background: #dddddd;
+    display: inline-block;
+}
+
+.label:hover {
+    background: cadetblue;
+}
+
+.label:active {
+    background: #9fa1a0;
+}
+
+.label:invalid+span {
+    color: #000000;
+}
+
+.label:valid+span {
+    color: #ffffff;
+}
+
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+
+/* Add a gray background color and some padding to the footer */
+footer {
+    background-color: #f2f2f2;
+    padding: 25px;
+}

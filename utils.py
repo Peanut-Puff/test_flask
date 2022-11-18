@@ -19,6 +19,15 @@ class db_util:
         self.cur.execute(sql)
         self.data = self.cur.fetchall()
 
+    def execute(self,sql):
+        try:
+            self.cur.execute(sql)
+            self.conn.commit()
+            return 0
+        except:
+            return -1
+
+
     def close(self):
         self.cur.close()
         self.conn.close()
