@@ -1323,7 +1323,7 @@ pre code {
   .col-lg-auto {
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
-    width: auto;
+    width: 2000px;
     max-width: 100%;
   }
   .col-lg-1 {
