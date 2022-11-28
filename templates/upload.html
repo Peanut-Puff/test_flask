@@ -50,7 +50,7 @@
       <div class="col-sm-6">
 
 
-        <form role="form" action="http://localhost:5000/upload" method="POST" enctype="multipart/form-data">
+        <form role="form" action="/upload" method="POST" enctype="multipart/form-data">
           <div>
             <label class="label">
               <input type="file" name="file" id="file" accept=".png,.jpg,.jpeg" required />
@@ -135,7 +135,7 @@
         if (validFileType(file)) {
           para.textContent = `File name ${file.name}, file size ${returnFileSize(file.size)}.`;
           const image = document.createElement('img');
-          image.className = "img-responsive";
+          image.className = "img-responsive img-gray";
           image.style = "width:100%";
           image.id = "img";
           image.alt = "Image";
