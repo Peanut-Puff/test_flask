@@ -22,9 +22,9 @@ new_path = "../static/img/1.jpg"
 
 @app.route('/upload')
 def upload(image=new_path):  # put application's code here
-    mydb = db_util('ppdb.ctogmnlvnm85.ap-northeast-1.rds.amazonaws.com', 3306, 'admin', 'er8N0Vn1FrvKiWaIQu0S', 'ppdb')
+    mydb = db_util('server', port, 'username', 'key', 'database')
     mydb.connect()
-    mydb.select_all('select * from file')
+    mydb.select_all('select * from table')
     mydb.close()
     return render_template('upload.html', time=time.ctime(), img=image, u=mydb.data)
 
@@ -44,18 +44,18 @@ def getfile():
                 filename=str(random.randint(1000,9999))+"."+filename
             # 将文件保存到 static/uploads 目录，文件名同上传时使用的文件名
             client=boto3.client('s3')
-            bucket_name='peanutpuff-bucket'
+            bucket_name='bucketname'
             folder_name='image/'
             client.upload_fileobj(upload_file,bucket_name,folder_name+filename,ExtraArgs={'ACL': 'public-read'})
-            path="https://peanutpuff-bucket.s3.ap-northeast-1.amazonaws.com/" + folder_name + filename
+            path="bucketpath" + folder_name + filename
 
             #new_path = os.path.join(root_path, 'static\\img', filename)
             #upload_file.save(new_path)
             #path="../static/img/" + filename
 
-            mydb = db_util('ppdb.ctogmnlvnm85.ap-northeast-1.rds.amazonaws.com', 3306, 'admin', 'er8N0Vn1FrvKiWaIQu0S', 'ppdb')
+            mydb = db_util('server', port, 'username', 'key', 'database')
             mydb.connect()
-            statu=mydb.execute("insert into file(name,path)values('%s','%s')" % (filename,path))
+            statu=mydb.execute("insert into table(name,path)values('%s','%s')" % (filename,path))
             mydb.close()
             if statu==0:
                 return upload(path)
@@ -65,9 +65,9 @@ def getfile():
 
 @app.route('/gallery')
 def gallery(path="../static/img/1.jpg",name="Example Image"):  # put application's code here
-    mydb = db_util('ppdb.ctogmnlvnm85.ap-northeast-1.rds.amazonaws.com', 3306, 'admin', 'er8N0Vn1FrvKiWaIQu0S', 'ppdb')
+    mydb = db_util('server', port, 'username', 'key', 'database')
     mydb.connect()
-    mydb.select_all('select name from file')
+    mydb.select_all('select name from table')
     mydb.close()
     return render_template('gallery.html',n=mydb.data.__len__(),u=mydb.data,imgpath=path,imgname=name)
 
@@ -78,7 +78,7 @@ def getpath():
         option = request.form.get("selectpic")
         if option=='--请选择--':
             return gallery()
-        mydb = db_util('ppdb.ctogmnlvnm85.ap-northeast-1.rds.amazonaws.com', 3306, 'admin', 'er8N0Vn1FrvKiWaIQu0S', 'ppdb')
+        mydb = db_util('server', port, 'username', 'key', 'database')
         mydb.connect()
         mydb.select_all('select * from file')
         mydb.close()
